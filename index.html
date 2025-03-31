@@ -3,41 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Moderna</title>
+    <title>Generador de Contraseñas</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="calculator">
-        <div class="theme-toggle">
-            <button onclick="toggleTheme()">🌙/☀️</button>
+    <div class="container">
+        <h1 class="animated-title">Generador de Contraseñas</h1>
+        
+        <div class="menu">
+            <button onclick="mostrarFormulario('generar')">Generar Contraseña</button>
+            <button onclick="mostrarContraseñas()">Mostrar Contraseñas</button>
+            <button onclick="guardarEnArchivo()">Guardar en Archivo</button>
+            <button onclick="mostrarFormulario('eliminar')">Eliminar Contraseña</button>
+            <button onclick="eliminarTodo()">Eliminar Todo</button>
         </div>
-        <input type="text" id="display" disabled>
-        <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="deleteLast()">DEL</button>
-            <button onclick="calculatePercentage()">%</button>
-            <button onclick="appendToDisplay(' ÷ ')">/</button>
-            <button onclick="appendToDisplay('7')">7</button>
-            <button onclick="appendToDisplay('8')">8</button>
-            <button onclick="appendToDisplay('9')">9</button>
-            <button onclick="appendToDisplay('×')">*</button>
-            <button onclick="appendToDisplay('4')">4</button>
-            <button onclick="appendToDisplay('5')">5</button>
-            <button onclick="appendToDisplay('6')">6</button>
-            <button onclick="appendToDisplay(' - ')">-</button>
-            <button onclick="appendToDisplay('1')">1</button>
-            <button onclick="appendToDisplay('2')">2</button>
-            <button onclick="appendToDisplay('3')">3</button>
-            <button onclick="appendToDisplay(' + ')">+</button>
-            <button onclick="appendToDisplay('0')" class="zero">0</button>
-            <button onclick="appendToDisplay('.')">.</button>
-            <button onclick="calculate()" class="equals">=</button>
-            <button onclick="calculateSquareRoot()">√</button>
-            <button onclick="appendToDisplay('**')">^</button>
-            <button onclick="appendToDisplay(Math.PI)">π</button>
-            <button onclick="calculateLog()">ln</button>
+
+        <div id="formulario-generar" class="formulario">
+            <h2>Generar Nueva Contraseña</h2>
+            <input type="text" id="nombre" placeholder="Nombre para la contraseña">
+            <input type="number" id="longitud" placeholder="Longitud (mínimo 6)" min="6">
+            
+            <div class="opciones-caracteres">
+                <label><input type="checkbox" id="mayusculas" checked> Mayúsculas (A-Z)</label>
+                <label><input type="checkbox" id="minusculas" checked> Minúsculas (a-z)</label>
+                <label><input type="checkbox" id="numeros" checked> Números (0-9)</label>
+                <label><input type="checkbox" id="hexadecimal"> Hexadecimal (0-9, A-F)</label>
+            </div>
+
+            <div class="opciones-especiales">
+                <h3>Caracteres Especiales</h3>
+                <input type="text" id="caracteres-especiales" value="!@#$%^&*">
+            </div>
+
+            <button onclick="generarContraseña()">Generar</button>
+            <p id="contraseña-generada" class="animated-text"></p>
+        </div>
+
+        <div id="formulario-eliminar" class="formulario">
+            <h2>Eliminar Contraseña</h2>
+            <input type="text" id="nombre-eliminar" placeholder="Nombre de la contraseña">
+            <button onclick="eliminarContraseña()">Eliminar</button>
+        </div>
+
+        <div id="contraseñas-guardadas" class="animated-list">
+            <h2>Contraseñas Guardadas</h2>
+            <ul id="lista-contraseñas"></ul>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
